@@ -1,0 +1,5 @@
+,raw_data,browsing_history,transformed_data
+product recommendation,"User ID: 12345, Browsing History: /electronics/gadgets, Time Spent: 5 min","Visited: electronicsworld.com, gadgetsnow.com | Timestamps: 10:15 AM, 10:20 AM","Segment: Gadget Enthusiasts, Age Group: 18-34, Interest: Electronics"
+targeted advertisement,"User ID: 12345, Browsing History: /fashion/shoes, Clicks: 3","Visited: fashionhub.com, shoestore.com | Timestamps: 3:45 PM, 3:50 PM","Segment: Fashion Shoppers, Gender: Female, Interest: Shoes"
+email marketing,"User ID: 12345, Browsing History: /travel/destinations, Time Spent: 10 min","Visited: travelguide.com, destinationdream.com | Timestamps: 9:30 AM, 9:40 AM","Segment: Travel Enthusiasts, Age Group: 25-44, Interest: Exotic Destinations"
+market research,"User ID: 12345, Browsing History: /health/fitness, Clicks: 7","Visited: fitlife.com, healthfocus.com | Timestamps: 11:00 AM, 11:15 AM","Segment: Health Conscious, Gender: Male, Interest: Fitness"

@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Papaya Payback Onboarding</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #f4f4f9;
+        }
+        .container {
+            width: 90%;
+            max-width: 600px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #ff6b6b;
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        p {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        .statement {
+            font-size: 18px;
+            margin: 15px 0;
+        }
+        .options {
+            margin: 10px 0;
+        }
+        .options select, .options input {
+            font-size: 16px;
+            padding: 5px;
+            margin-top: 5px;
+            width: 100%;
+        }
+        .sample-data-flow {
+            margin-top: 20px;
+            background: #f0f0f5;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .sample-data-flow h3 {
+            margin-top: 0;
+            color: #555;
+        }
+        .data-step {
+            margin: 10px 0;
+        }
+        .data-step span {
+            display: block;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Papaya Payback Onboarding</h1>
+        <p>Welcome! Let's set your data sharing preferences. Customize how you want your data to be used with simple choices.</p>
+        
+        <div class="statement">
+            <label for="anonymity">I (the user) am willing to share</label>
+            <div class="options">
+                <select id="anonymity">
+                    <option value="anonymized">anonymized</option>
+                    <option value="de-anonymized">de-anonymized</option>
+                </select>
+                <span>data with</span>
+                <select id="data-recipient">
+                    <option value="advertising companies">advertising companies</option>
+                    <option value="retailers">retailers</option>
+                </select>
+                <span>for the purpose of</span>
+                <select id="purpose">
+                    <option value="product recommendation">product recommendation</option>
+                    <option value="targeted advertisement">targeted advertisement</option>
+                    <option value="email marketing">email marketing</option>
+                    <option value="market research">market research</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="sample-data-flow">
+            <h3>Sample Data Flow</h3>
+            <div class="data-step">
+                <strong>1. Data Collected:</strong>
+                <span>Your browsing data is collected based on your activity.</span>
+            </div>
+            <div class="data-step">
+                <strong>2. Data Transformation:</strong>
+                <span>Your data is processed to create customer segments.</span>
+            </div>
+            <div class="data-step">
+                <strong>3. Data Sharing:</strong>
+                <span>The processed data is shared with the selected companies.</span>
+            </div>
+            <div class="data-step">
+                <strong>4. Result:</strong>
+                <span>These companies use the data to serve you personalized content, such as tailored ads or product recommendations.</span>
+            </div>
+        </div>
+        
+        <p>Once you're done, your preferences will be applied to how we manage and share your data. You're in control!</p>
+    </div>
+</body>
+</html>
