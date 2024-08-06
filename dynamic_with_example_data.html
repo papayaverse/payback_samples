@@ -36,19 +36,35 @@
             margin: 10px 0;
             font-size: 16px;
         }
-        .statement {
-            font-size: 18px;
-            margin: 15px 0;
+        
+        .statement label {
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 5px;
+            font-size: 16px;
         }
-        .options {
-            margin: 10px 0;
+
+        .statement .options label {
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 5px;
+            font-size: 16px;
         }
-        .options select, .options input {
+
+        .statement .options {
+            display: block;
+            margin: 5px 0;
+        }
+
+        .statement .options select {
             font-size: 16px;
             padding: 5px;
-            margin-top: 5px;
-            width: 100%;
+            vertical-align: middle;
         }
+
+
+        
+
         .button {
             display: block;
             width: 100%;
@@ -84,6 +100,16 @@
             margin-top: 5px;
             font-size: 14px;
         }
+        span.code-snippet {
+        display: inline-block;
+        background-color: #333;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 2px 4px;
+        font-family: "Courier New", Courier, monospace;
+        color: #fff;
+        font-size: 14px;
+        }
     </style>
 </head>
 <body>
@@ -92,18 +118,18 @@
         <p>Welcome! Let's set your data sharing preferences. Customize how you want your data to be used with simple choices.</p>
         
         <div class="statement">
-            <label for="anonymity">I (the user) am willing to share</label>
             <div class="options">
+                <label for="anonymity">I (the user) am willing to share</label>
                 <select id="anonymity">
                     <option value="anonymized">anonymized</option>
                     <option value="de-anonymized">de-anonymized</option>
                 </select>
-                <span>data with</span>
+                <label for="data-recipient">data with</label>
                 <select id="data-recipient">
                     <option value="advertising companies">advertising companies</option>
                     <option value="retailers">retailers</option>
                 </select>
-                <span>for the purpose of</span>
+                <label for="purpose">for the purpose of</label>
                 <select id="purpose">
                     <option value="product recommendation">product recommendation</option>
                     <option value="targeted advertisement">targeted advertisement</option>
@@ -112,6 +138,7 @@
                 </select>
             </div>
         </div>
+             
 
         <button class="button" onclick="generateDataFlow()">Save Preferences</button>
         
@@ -119,23 +146,17 @@
             <h3>Sample Data Flow</h3>
             <div class="data-step">
                 <strong>1. Data Collected:</strong>
-                <span id="dataCollected"></span>
-            </div>
+                <span>Papaya Payback collects data based on your browsing activity, including your browsing history, clicks, and time spent on different pages. Here is an example: </span>
+                <span id="dataCollected" class="code-snippet"></span>
+                <span id="browsingHistory" class="code-snippet"></span>
+            </div>            
             <div class="data-step">
-                <strong>2. Browsing History:</strong>
-                <span id="browsingHistory"></span>
-            </div>
-            <div class="data-step">
-                <strong>3. Data Transformation:</strong>
-                <span>Your data is processed to create the customer segments like this one: </span>
-                <span id="segment"></span>
-            </div>
-            <div class="data-step">
-                <strong>4. Data Sharing:</strong>
+                <strong>2. Data Transformation & Sharing:</strong>
                 <span id="dataSharing"></span>
+                <span id="segment" class="code-snippet"></span>
             </div>
             <div class="data-step">
-                <strong>5. Result:</strong>
+                <strong>3. Result:</strong>
                 <span id="resultContent"></span>
             </div>
         </div>
@@ -203,7 +224,7 @@
             document.getElementById("dataCollected").innerText = data.raw_data;
             document.getElementById("browsingHistory").innerText = data.browsing_history;
             document.getElementById("segment").innerText = data.transformed_data;
-            document.getElementById("dataSharing").innerText = "The processed data is shared with " + document.getElementById("data-recipient").value.replace('advertising companies', 'Advertiser A').replace('retailers', 'Retailer B') + ".";
+            document.getElementById("dataSharing").innerText = "Your data is processed to create customer segments and is shared with companies like " + document.getElementById("data-recipient").value.replace('advertising companies', 'Advertiser A').replace('retailers', 'Retailer B') + " in this transformed state.";
             document.getElementById("resultContent").innerText = "These companies use the data for " + purpose + " and serve you personalized content accordingly.";
 
             // Display the sample data flow
