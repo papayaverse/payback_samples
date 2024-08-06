@@ -201,6 +201,7 @@
             // Set the sample data in the HTML
             document.getElementById("dataCollected").innerText = data.raw_data;
             document.getElementById("browsingHistory").innerText = data.browsing_history;
+            document.getElementById("segment").innerText = data.transformed_data;
             document.getElementById("dataSharing").innerText = "The processed data is shared with " + document.getElementById("data-recipient").value.replace('advertising companies', 'Advertiser A').replace('retailers', 'Retailer B') + ".";
             document.getElementById("resultContent").innerText = "These companies use the data for " + purpose + " and serve you personalized content accordingly.";
 
@@ -220,7 +221,8 @@
     </div>
     <div class="data-step">
         <strong>3. Data Transformation:</strong>
-        <span>Your data is processed to create customer segments.</span>
+        <span>Your data is processed to create the customer segments like this one: </span>
+        <span id="segment"></span>
     </div>
     <div class="data-step">
         <strong>4. Data Sharing:</strong>
