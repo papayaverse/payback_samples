@@ -20,7 +20,7 @@
         }
         .container {
             width: 90%;
-            max-width: 600px;
+            max-width: 1000px;
             background: #fff;
             padding: 20px;
             border-radius: 10px;
@@ -34,36 +34,28 @@
         }
         p {
             margin: 10px 0;
-            font-size: 16px;
+            font-size: 14px;
         }
-        
         .statement label {
-            display: inline-block;
             vertical-align: middle;
             margin-right: 5px;
             font-size: 16px;
         }
-
-        .statement .options label {
-            display: inline-block;
+        .options label {
             vertical-align: middle;
             margin-right: 5px;
             font-size: 16px;
         }
-
-        .statement .options {
-            display: block;
+        .options {
             margin: 5px 0;
+            color: blue;
         }
-
-        .statement .options select {
+        .options select {
             font-size: 16px;
             padding: 5px;
             vertical-align: middle;
+
         }
-
-
-        
 
         .button {
             display: block;
@@ -116,10 +108,11 @@
     <div class="container">
         <h1>Papaya Payback Onboarding</h1>
         <p>Welcome! Let's set your data sharing preferences. Customize how you want your data to be used with simple choices.</p>
+        <p> Click the "Show Sample Data Flows" button to see how your data can be collected and used given the preferences you have chosen!</p>
         
         <div class="statement">
             <div class="options">
-                <label for="anonymity">I (the user) am willing to share</label>
+                <label for="anonymity">I am willing to share</label>
                 <select id="anonymity">
                     <option value="anonymized">anonymized</option>
                     <option value="de-anonymized">de-anonymized</option>
@@ -129,7 +122,7 @@
                     <option value="advertising companies">advertising companies</option>
                     <option value="retailers">retailers</option>
                 </select>
-                <label for="purpose">for the purpose of</label>
+                <label for="purpose">for the purpose(s) of</label>
                 <select id="purpose">
                     <option value="product recommendation">product recommendation</option>
                     <option value="targeted advertisement">targeted advertisement</option>
@@ -140,7 +133,7 @@
         </div>
              
 
-        <button class="button" onclick="generateDataFlow()">Save Preferences</button>
+        <button class="button" onclick="generateDataFlow()">Show Data Flows</button>
         
         <div class="sample-data-flow" id="sampleDataFlow">
             <h3>Sample Data Flow</h3>
