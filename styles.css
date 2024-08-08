@@ -74,3 +74,47 @@ body {
 .button:hover {
     background-color: #ff4b4b;
 }
+
+.code-snippet {
+    background-color: #333;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 2px 4px;
+    font-family: "Courier New", Courier, monospace;
+    color: #fff;
+    font-size: 16px;
+}
+
+.info-button {
+    display: inline-block;
+    margin-top: 10px;
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.info-button:hover {
+    background-color: #ff4b4b;
+}
+
+.more-info {
+    margin-top: 10px;
+    background-color: #f9f9f9;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+}
+
+.more-info img {
+    max-width: 100%;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.more-info p {
+    font-size: 14px;
+    color: #555;
+}
