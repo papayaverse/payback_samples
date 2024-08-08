@@ -15,12 +15,12 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            
             background: #f4f4f9;
         }
         .container {
             width: 90%;
-            max-width: 1000px;
+            max-width: 800px;
             background: #fff;
             padding: 20px;
             border-radius: 10px;
@@ -107,12 +107,13 @@
 <body>
     <div class="container">
         <h1>Papaya Payback Onboarding</h1>
-        <p>Welcome! Let's set your data sharing preferences. Customize how you want your data to be used with simple choices.</p>
-        <p> Click the "Show Sample Data Flows" button to see how your data can be collected and used given the preferences you have chosen!</p>
+        <p>Customize your data sharing preferences below.</p>
+        <p>To see how your data will be used, click the "What happens to my data?" button </p>
+
         
         <div class="statement">
             <div class="options">
-                <label for="anonymity">I am willing to share</label>
+                <label for="anonymity">I am willing to share my</label>
                 <select id="anonymity">
                     <option value="anonymized">anonymized</option>
                     <option value="de-anonymized">de-anonymized</option>
@@ -133,25 +134,27 @@
         </div>
              
 
-        <button class="button" onclick="generateDataFlow()">Show Data Flows</button>
+        <button class="button" onclick="generateDataFlow()">What happens to my data?</button>
         
         <div class="sample-data-flow" id="sampleDataFlow">
-            <h3>Sample Data Flow</h3>
+            <h3>What happens to your data:</h3>
             <div class="data-step">
-                <strong>1. Data Collected:</strong>
-                <span>Papaya Payback collects data based on your browsing activity, including your browsing history, clicks, and time spent on different pages. Here is an example: </span>
+                <strong>1. What data do we collect?</strong>
+                <span>Papaya Payback collects your browsing data, including web history, clicks, and time spent on different pages. This is what one entry might look like: </span>
                 <span id="dataCollected" class="code-snippet"></span>
                 <span id="browsingHistory" class="code-snippet"></span>
             </div>            
             <div class="data-step">
-                <strong>2. Data Transformation & Sharing:</strong>
+                <strong>2. What can companies see about you?</strong>
                 <span id="dataSharing"></span>
                 <span id="segment" class="code-snippet"></span>
             </div>
             <div class="data-step">
-                <strong>3. Result:</strong>
+                <strong>3. How does this impact you?</strong>
                 <span id="resultContent"></span>
+                <img id="resultImage" src="" alt="Result Image" style="display:none; margin-top: 10px; max-width: 100%; border-radius: 5px;">
             </div>
+            <button class="button"> Save Preferences </button>
         </div>
         
         <p>Once you're done, your preferences will be applied to how we manage and share your data. You're in control!</p>
@@ -160,15 +163,15 @@
     <script>
         const sampleData = {
             "anonymized": {
-                "product recommendation": {
+                "targeted advertisement": {
                     "raw_data": "User ID: 12345, Browsing History: /electronics/gadgets, Time Spent: 5 min",
                     "browsing_history": "Visited: electronicsworld.com, gadgetsnow.com | Timestamps: 10:15 AM, 10:20 AM",
                     "transformed_data": "Segment: Gadget Enthusiasts, Age Group: 18-34, Interest: Electronics"
                 },
-                "targeted advertisement": {
-                    "raw_data": "User ID: 12345, Browsing History: /fashion/shoes, Clicks: 3",
-                    "browsing_history": "Visited: fashionhub.com, shoestore.com | Timestamps: 3:45 PM, 3:50 PM",
-                    "transformed_data": "Segment: Fashion Shoppers, Gender: Female, Interest: Shoes"
+                "product recommendation": {
+                    "raw_data": "User ID: 12345, Browsing History: /fashion/pants, Clicks: 3",
+                    "browsing_history": "Visited: fashionhub.com, pantaloony.com | Timestamps: 3:45 PM, 3:50 PM",
+                    "transformed_data": "Segment: Fashion Shoppers, Gender: Female, Interest: Pants"
                 },
                 "email marketing": {
                     "raw_data": "User ID: 12345, Browsing History: /travel/destinations, Time Spent: 10 min",
@@ -182,15 +185,15 @@
                 }
             },
             "de-anonymized": {
-                "product recommendation": {
+                "targeted advertisement": {
                     "raw_data": "User Name: John Doe, Email: john.doe@example.com, Browsing History: /electronics/gadgets, Time Spent: 5 min",
                     "browsing_history": "Visited: electronicsworld.com, gadgetsnow.com | Timestamps: 10:15 AM, 10:20 AM",
                     "transformed_data": "Full Name: John Doe, Email: john.doe@example.com, Segment: Gadget Enthusiasts, Age Group: 18-34, Interest: Electronics"
                 },
-                "targeted advertisement": {
-                    "raw_data": "User Name: Jane Smith, Email: jane.smith@example.com, Browsing History: /fashion/shoes, Clicks: 3",
-                    "browsing_history": "Visited: fashionhub.com, shoestore.com | Timestamps: 3:45 PM, 3:50 PM",
-                    "transformed_data": "Full Name: Jane Smith, Email: jane.smith@example.com, Segment: Fashion Shoppers, Gender: Female, Interest: Shoes"
+                "product recommendation": {
+                    "raw_data": "User Name: Jane Smith, Email: jane.smith@example.com, Browsing History: /fashion/pants, Clicks: 3",
+                    "browsing_history": "Visited: fashionhub.com, pantaloony.com | Timestamps: 3:45 PM, 3:50 PM",
+                    "transformed_data": "Full Name: Jane Smith, Email: jane.smith@example.com, Segment: Fashion Shoppers, Gender: Female, Interest: Pants"
                 },
                 "email marketing": {
                     "raw_data": "User Name: Alice Johnson, Email: alice.johnson@example.com, Browsing History: /travel/destinations, Time Spent: 10 min",
@@ -218,7 +221,20 @@
             document.getElementById("browsingHistory").innerText = data.browsing_history;
             document.getElementById("segment").innerText = data.transformed_data;
             document.getElementById("dataSharing").innerText = "Your data is processed to create customer segments and is shared with companies like " + document.getElementById("data-recipient").value.replace('advertising companies', 'Advertiser A').replace('retailers', 'Retailer B') + " in this transformed state.";
-            document.getElementById("resultContent").innerText = "These companies use the data for " + purpose + " and serve you personalized content accordingly.";
+            document.getElementById("resultContent").innerText = "These companies use the data for " + purpose + " and serve you personalized content like the one displayed here.";
+            // Set the result image based on the purpose
+            var resultImage = document.getElementById("resultImage");
+            if (purpose === "product recommendation") {
+                resultImage.src = "product_rec.png";
+            } else if (purpose === "targeted advertisement") {
+                resultImage.src = "targeted_ads.png";
+            } else if (purpose === "email marketing") {
+                resultImage.src = "email_marketing.png";
+            } else if (purpose === "market research") {
+                resultImage.src = "";
+            }
+            // Display the image and data flow
+            resultImage.style.display = "block";
 
             // Display the sample data flow
             document.getElementById("sampleDataFlow").style.display = "block";

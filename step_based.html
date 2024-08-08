@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Onboarding</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Dynamic Statement Header -->
+    <div id="statement-header">
+        <h1 id="privacy-statement">I am willing to share my</h1>
+    </div>
+
+    <!-- Onboarding Container -->
+    <div id="onboarding">
+        <!-- Step 1: Anonymity Choice -->
+        <section class="step" id="step-1">
+            <h2>Choose how you want to share your data</h2>
+            <div class="choice-box" onclick="selectAnonymity('Anonymized')">
+                <h3>Anonymized</h3>
+                <p>Your data is stripped of personal identifiers. Companies will not see who you are but will receive aggregate data.</p>
+            </div>
+            <div class="choice-box" onclick="selectAnonymity('De-anonymized')">
+                <h3>De-anonymized</h3>
+                <p>Your data includes personal identifiers. Companies may see data tied to your identity.</p>
+            </div>
+        </section>
+
+        <!-- Step 2: Data Recipient Choice (Initially Hidden) -->
+        <section class="step" id="step-2" style="display:none;">
+            <h2>Choose who you want to share your data with</h2>
+            <div class="choice-box" onclick="selectRecipient('Advertising Companies')">
+                <h3>Advertising Companies</h3>
+                <p>These companies use data to show you targeted ads.</p>
+            </div>
+            <div class="choice-box" onclick="selectRecipient('Retailers')">
+                <h3>Retailers</h3>
+                <p>These companies use data to recommend products and services.</p>
+            </div>
+        </section>
+
+        <!-- Step 3: Purpose Choice (Initially Hidden) -->
+        <section class="step" id="step-3" style="display:none;">
+            <h2>Choose the purpose(s) of sharing your data</h2>
+            <div class="choice-box" onclick="selectPurpose('Product Recommendation')">
+                <h3>Product Recommendation</h3>
+                <p>Your data will be used to recommend products tailored to your interests.</p>
+            </div>
+            <div class="choice-box" onclick="selectPurpose('Targeted Advertisement')">
+                <h3>Targeted Advertisement</h3>
+                <p>Your data will be used to display ads that match your browsing behavior.</p>
+            </div>
+            <div class="choice-box" onclick="selectPurpose('Email Marketing')">
+                <h3>Email Marketing</h3>
+                <p>Your data will be used to send you personalized email offers and promotions.</p>
+            </div>
+            <div class="choice-box" onclick="selectPurpose('Market Research')">
+                <h3>Market Research</h3>
+                <p>Your data will be used to gather insights into consumer behavior and trends.</p>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
