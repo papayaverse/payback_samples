@@ -1,56 +1,48 @@
-function startOnboarding() {
-    // Hide the intro step and show Step 1
-    document.getElementById('intro-step').style.display = 'none';
-    document.getElementById('step-1').style.display = 'block';
-}
-
-let privacyStatement = "I am willing to share my ";
+let privacyStatement = "I am willing to share ";
 let selectedAnonymity = "";
 let selectedRecipient = "";
 let selectedPurpose = "";
 
+function startOnboarding() {
+    document.getElementById('step-1').scrollIntoView({ behavior: 'smooth' });
+}
+
 function selectAnonymity(anonymity) {
-    // Update the privacy statement with the chosen anonymity option
-    privacyStatement += `<span class="highlight">${anonymity}</span> data with `;
     selectedAnonymity = anonymity.toLowerCase();
+    
+    // Update the privacy statement
+    privacyStatement = `I am willing to share <span class="highlight">${anonymity}</span> data with `;
     document.getElementById('privacy-statement').innerHTML = privacyStatement;
 
-    // Hide Step 1 and show Step 2
-    document.getElementById('step-1').style.display = 'none';
+    // Scroll to the next step
     document.getElementById('step-2').style.display = 'block';
+    document.getElementById('step-2').scrollIntoView({ behavior: 'smooth' });
 }
 
 function selectRecipient(recipient) {
-    // Append the recipient choice to the privacy statement
     selectedRecipient = recipient.toLowerCase();
+
+    // Append the recipient choice to the privacy statement
     privacyStatement += `<span class="highlight">${recipient}</span> for the purpose(s) of `;
     document.getElementById('privacy-statement').innerHTML = privacyStatement;
 
-    // Hide Step 2 and show Step 3
-    document.getElementById('step-2').style.display = 'none';
+    // Scroll to the next step
     document.getElementById('step-3').style.display = 'block';
-}
-
-function toggleInfo(event, infoId) {
-    event.stopPropagation(); // Prevent the click event from bubbling up to the choice box
-    var infoSection = document.getElementById(infoId);
-    if (infoSection.style.display === "none" || infoSection.style.display === "") {
-        infoSection.style.display = "block";
-    } else {
-        infoSection.style.display = "none";
-    }
+    document.getElementById('step-3').scrollIntoView({ behavior: 'smooth' });
 }
 
 function selectPurpose(purpose) {
-    // Append the purpose choice to the privacy statement
     selectedPurpose = purpose.toLowerCase();
+
+    // Append the purpose choice to the privacy statement
     privacyStatement += `<span class="highlight">${purpose}</span>`;
     document.getElementById('privacy-statement').innerHTML = privacyStatement;
 
-    // Show the sample data flow based on user's choices
-    console.log("Here lies the anonymity, recipient, and purpose");
-    console.log(selectedAnonymity, selectedRecipient, selectedPurpose);
+    // Scroll to the sample data flow section
+    document.getElementById('sample-data-flow').style.display = 'block';
+    document.getElementById('sample-data-flow').scrollIntoView({ behavior: 'smooth' });
 
+    // Show the sample data flow based on user's choices
     const sampleData = {
         "anonymized": {
             "targeted advertisement": {
@@ -96,19 +88,17 @@ function selectPurpose(purpose) {
                 "transformed_data": "Full Name: Bob Brown, Email: bob.brown@example.com, Segment: Health Conscious, Gender: Male, Interest: Fitness"
             }
         }
-    }
+    };
 
-     // Get sample data based on selections
-    var data = sampleData[selectedAnonymity][selectedPurpose];
-
-    // Set the sample data in the HTML
+    const data = sampleData[selectedAnonymity][selectedPurpose];
     document.getElementById("dataCollected").innerText = data.raw_data;
     document.getElementById("browsingHistory").innerText = data.browsing_history;
     document.getElementById("segment").innerText = data.transformed_data;
-    document.getElementById("dataSharing").innerText = "Your data is processed to create customer segments and is shared with companies like " + selectedRecipient.replace('advertising companies', 'Advertiser A').replace('retailers', 'Retailer B') + " in this transformed state.";
-    document.getElementById("resultContent").innerText = "These companies use the data for " + selectedPurpose + " and serve you personalized content like the one displayed here.";
-    // Set the result image based on the purpose
-    var resultImage = document.getElementById("resultImage");
+    document.getElementById("dataSharing").innerText = `Your data is processed to create customer segments and is shared with ${selectedRecipient}.`;
+    document.getElementById("resultContent").innerText = `These companies use the data for ${selectedPurpose} and serve you personalized content.`;
+
+    // Update result image based on purpose
+    const resultImage = document.getElementById("resultImage");
     if (selectedPurpose === "product recommendation") {
         resultImage.src = "product_rec.png";
     } else if (selectedPurpose === "targeted advertisement") {
@@ -118,11 +108,16 @@ function selectPurpose(purpose) {
     } else if (selectedPurpose === "market research") {
         resultImage.src = "";
     }
-    // Display the image and data flow
-    resultImage.style.display = "block";
 
-    // Hide Step 3 and show Sample Data Flow
-    document.getElementById('step-3').style.display = 'none';
-    document.getElementById('sample-data-flow').style.display = 'block';
+    resultImage.style.display = "block";
 }
 
+function toggleInfo(event, infoId) {
+    event.stopPropagation(); // Prevent the click event from bubbling up to the choice box
+    const infoSection = document.getElementById(infoId);
+    if (infoSection.style.display === "none" || infoSection.style.display === "") {
+        infoSection.style.display = "block";
+    } else {
+        infoSection.style.display = "none";
+    }
+}

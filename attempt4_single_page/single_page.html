@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Onboarding</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Dynamic Privacy Statement -->
+    <div id="statement-header">
+        <h1 id="privacy-statement">I am willing to share</h1>
+    </div>
+    <!-- Onboarding Container -->
+    <div id="onboarding">
+        
+
+        <!-- Step 1: Anonymity Choice -->
+        <section class="step" id="step-1">
+            <h2>Choose how you want to share your data</h2>
+            <div class="choice-box" onclick="selectAnonymity('Anonymized')">
+                <h3>Anonymized</h3>
+                <p>Your data is stripped of personal identifiers. Companies will not see who you are but will receive aggregate data.</p>
+            </div>
+            <div class="choice-box" onclick="selectAnonymity('De-anonymized')">
+                <h3>De-anonymized</h3>
+                <p>Your data includes personal identifiers. Companies may see data tied to your identity.</p>
+            </div>
+            <button class="save-button" onclick="saveAnonymity()">Save</button>
+        </section>
+
+        <!-- Step 2: Data Recipient Choice -->
+        <section class="step" id="step-2" style="display:none;">
+            <h2>Choose who you want to share your data with</h2>
+            <div class="choice-box" onclick="selectRecipient('Advertising Companies')">
+                <h3>Advertising Companies</h3>
+                <p>These companies use data to show you targeted ads.</p>
+            </div>
+            <div class="choice-box" onclick="selectRecipient('Retailers')">
+                <h3>Retailers</h3>
+                <p>These companies use data to recommend products and services.</p>
+            </div>
+            <button class="save-button" onclick="saveRecipient()">Save</button>
+        </section>
+
+        <!-- Step 3: Purpose Choice -->
+        <section class="step" id="step-3" style="display:none;">
+            <h2>Choose the purpose(s) of sharing your data</h2>
+            <div class="choice-box" onclick="selectPurpose('Product Recommendation')">
+                <h3>Product Recommendation</h3>
+                <p>Your data will be used to recommend products tailored to your interests.</p>
+                <button class="info-button" onclick="toggleInfo(event, 'product-recommendation-info')">More Info</button>
+                <div id="product-recommendation-info" class="more-info" style="display:none;">
+                    <img src="product_rec.png" alt="Product Recommendation Example" />
+                    <p>Example of how product recommendations might look based on your data.</p>
+                </div>
+            </div>
+            <div class="choice-box" onclick="selectPurpose('Targeted Advertisement')">
+                <h3>Targeted Advertisement</h3>
+                <p>Your data will be used to display ads that match your browsing behavior.</p>
+                <button class="info-button" onclick="toggleInfo(event, 'targeted-advertisement-info')">More Info</button>
+                <div id="targeted-advertisement-info" class="more-info" style="display:none;">
+                    <img src="targeted_ads.png" alt="Targeted Advertisement Example" />
+                    <p>Example of targeted ads based on your browsing habits.</p>
+                </div>
+            </div>
+            <div class="choice-box" onclick="selectPurpose('Email Marketing')">
+                <h3>Email Marketing</h3>
+                <p>Your data will be used to send you personalized email offers and promotions.</p>
+                <button class="info-button" onclick="toggleInfo(event, 'email-marketing-info')">More Info</button>
+                <div id="email-marketing-info" class="more-info" style="display:none;">
+                    <img src="email_marketing.png" alt="Email Marketing Example" />
+                    <p>Example of personalized email offers you might receive.</p>
+                </div>
+            </div>
+            <div class="choice-box" onclick="selectPurpose('Market Research')">
+                <h3>Market Research</h3>
+                <p>Your data will be used to gather insights into consumer behavior and trends.</p>
+                <button class="info-button" onclick="toggleInfo(event, 'market-research-info')">More Info</button>
+                <div id="market-research-info" class="more-info" style="display:none;">
+                    <img src="market_research_image.jpg" alt="Market Research Example" />
+                    <p>Example of how your data might be used for market research.</p>
+                </div>
+            </div>
+            <button class="save-button" onclick="savePurpose()">Save</button>
+        </section>
+
+        <!-- Sample Data Flow -->
+        <section class="step" id="sample-data-flow" style="display:none;">
+            <h3>What happens to your data?</h3>
+            <div class="data-step">
+                    <strong>1. What data do we collect?</strong>
+                    <span>Papaya Payback collects your browsing data, including web history, clicks, and time spent on different pages. This is what one entry might look like: </span>
+                    <span id="dataCollected" class="code-snippet"></span>
+                    <span id="browsingHistory" class="code-snippet"></span>
+            </div>
+            <div class="data-step">
+                <strong>2. What can companies see about you?</strong>
+                <span id="dataSharing"></span>
+                <span id="segment" class="code-snippet"></span>
+            </div>
+            <div class="data-step">
+                <strong>3. How does this impact you?</strong>
+                <span id="resultContent"></span>
+                <img id="resultImage" src="" alt="Result Image" style="display:none; margin-top: 10px; max-width: 100%; border-radius: 5px;">
+            </div>
+        </section>
+    </div>
+
+    <script src="script2.js"></script>
+</body>
+</html>
