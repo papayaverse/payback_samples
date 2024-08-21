@@ -110,11 +110,11 @@ function selectPurpose(purpose) {
     // Set the result image based on the purpose
     var resultImage = document.getElementById("resultImage");
     if (selectedPurpose === "product recommendation") {
-        resultImage.src = "attempt2/product_rec.png";
+        resultImage.src = "product_rec.png";
     } else if (selectedPurpose === "targeted advertisement") {
-        resultImage.src = "attempt2/targeted_ads.png";
+        resultImage.src = "targeted_ads.png";
     } else if (selectedPurpose === "email marketing") {
-        resultImage.src = "attempt2/email_marketing.png";
+        resultImage.src = "email_marketing.png";
     } else if (selectedPurpose === "market research") {
         resultImage.src = "";
     }
