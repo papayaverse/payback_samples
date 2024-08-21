@@ -27,6 +27,7 @@ body {
 }
 
 .code-snippet {
+    display: block;
     background-color: #333;
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -110,8 +111,8 @@ body {
 }
 
 .save-button {
-    display: inline-block;
-    margin-top: 10px;
+    display: block;
+    margin: 20px auto;
     background-color: #4CAF50;
     color: white;
     border: none;
@@ -119,9 +120,26 @@ body {
     padding: 10px 20px;
     cursor: pointer;
     font-size: 16px;
+    text-align: center;
 }
 
 .save-button:hover {
     background-color: #45a049;
 }
 
+.start-button {
+    display: block;
+    margin: 20px auto;
+    background-color: orange;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+}
+
+.start-button:hover {
+    background-color: lightsalmon;
+}

@@ -7,24 +7,79 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <script>
+        const sampleData = {
+                    "anonymized": {
+                        "targeted advertisement": {
+                            "raw_data": "User ID: 12345, Browsing History: /electronics/gadgets, Time Spent: 5 min",
+                            "browsing_history": "Visited: electronicsworld.com, gadgetsnow.com | Timestamps: 10:15 AM, 10:20 AM",
+                            "transformed_data": "Segment: Gadget Enthusiasts, Age Group: 18-34, Interest: Electronics"
+                        },
+                        "product recommendation": {
+                            "raw_data": "User ID: 12345, Browsing History: /fashion/pants, Clicks: 3",
+                            "browsing_history": "Visited: fashionhub.com, pantaloony.com | Timestamps: 3:45 PM, 3:50 PM",
+                            "transformed_data": "Segment: Fashion Shoppers, Gender: Female, Interest: Pants"
+                        },
+                        "email marketing": {
+                            "raw_data": "User ID: 12345, Browsing History: /travel/destinations, Time Spent: 10 min",
+                            "browsing_history": "Visited: travelguide.com, destinationdream.com | Timestamps: 9:30 AM, 9:40 AM",
+                            "transformed_data": "Segment: Travel Enthusiasts, Age Group: 25-44, Interest: Exotic Destinations"
+                        },
+                        "market research": {
+                            "raw_data": "User ID: 12345, Browsing History: /health/fitness, Clicks: 7",
+                            "browsing_history": "Visited: fitlife.com, healthfocus.com | Timestamps: 11:00 AM, 11:15 AM",
+                            "transformed_data": "Segment: Health Conscious, Gender: Male, Interest: Fitness"
+                        }
+                    },
+                    "de-anonymized": {
+                        "targeted advertisement": {
+                            "raw_data": "User Name: John Doe, Email: john.doe@example.com, Browsing History: /electronics/gadgets, Time Spent: 5 min",
+                            "browsing_history": "Visited: electronicsworld.com, gadgetsnow.com | Timestamps: 10:15 AM, 10:20 AM",
+                            "transformed_data": "Full Name: John Doe, Email: john.doe@example.com, Segment: Gadget Enthusiasts, Age Group: 18-34, Interest: Electronics"
+                        },
+                        "product recommendation": {
+                            "raw_data": "User Name: Jane Smith, Email: jane.smith@example.com, Browsing History: /fashion/pants, Clicks: 3",
+                            "browsing_history": "Visited: fashionhub.com, pantaloony.com | Timestamps: 3:45 PM, 3:50 PM",
+                            "transformed_data": "Full Name: Jane Smith, Email: jane.smith@example.com, Segment: Fashion Shoppers, Gender: Female, Interest: Pants"
+                        },
+                        "email marketing": {
+                            "raw_data": "User Name: Alice Johnson, Email: alice.johnson@example.com, Browsing History: /travel/destinations, Time Spent: 10 min",
+                            "browsing_history": "Visited: travelguide.com, destinationdream.com | Timestamps: 9:30 AM, 9:40 AM",
+                            "transformed_data": "Full Name: Alice Johnson, Email: alice.johnson@example.com, Segment: Travel Enthusiasts, Age Group: 25-44, Interest: Exotic Destinations"
+                        },
+                        "market research": {
+                            "raw_data": "User Name: Bob Brown, Email: bob.brown@example.com, Browsing History: /health/fitness, Clicks: 7",
+                            "browsing_history": "Visited: fitlife.com, healthfocus.com | Timestamps: 11:00 AM, 11:15 AM",
+                            "transformed_data": "Full Name: Bob Brown, Email: bob.brown@example.com, Segment: Health Conscious, Gender: Male, Interest: Fitness"
+                        }
+                    }
+                };
+        
+    </script>
     <!-- Dynamic Privacy Statement -->
     <div id="statement-header">
-        <h1 id="privacy-statement">I am willing to share</h1>
+        <h1 id="privacy-statement" style="display:none;">I am willing to share</h1>
     </div>
     <!-- Onboarding Container -->
     <div id="onboarding">
-        
-
+        <h2>Welcome to Your Data Preferences</h2>
+        <!-- Introductory Step -->
+        <section class="step" id="intro-step">
+            <p>In this process, you'll be able to build a data preferences statement by choosing how your data is shared, who it's shared with, and for what purposes.</p>
+            <button class="start-button" onclick="startOnboarding()">Get Started</button>
+        </section>
         <!-- Step 1: Anonymity Choice -->
-        <section class="step" id="step-1">
+        <section class="step" id="step-1" style="display:none;">
             <h2>Choose how you want to share your data</h2>
             <div class="choice-box" onclick="selectAnonymity('Anonymized')">
                 <h3>Anonymized</h3>
-                <p>Your data is stripped of personal identifiers. Companies will not see who you are but will receive aggregate data.</p>
+                <p>Your data is stripped of personal identifiers. Companies will not see who you are but will receive aggregate data, as seen below:</p>
+                <span id="dataCollectedA" class="code-snippet">Segment: Gadget Enthusiasts, Age Group: 18-34, Interest: Electronics</span>
             </div>
             <div class="choice-box" onclick="selectAnonymity('De-anonymized')">
                 <h3>De-anonymized</h3>
-                <p>Your data includes personal identifiers. Companies may see data tied to your identity.</p>
+                <p>Your data includes your full name and email address. Companies will see this in addition to your aggregated data, as shown below:</p>
+                <span id="dataCollectedDA" class="code-snippet">Full Name: John Doe, Email: john.doe@example.com, Segment: Gadget Enthusiasts, Age Group: 18-34, Interest: Electronics</span>
             </div>
             <button class="save-button" onclick="saveAnonymity()">Save</button>
         </section>
@@ -87,23 +142,24 @@
 
         <!-- Sample Data Flow -->
         <section class="step" id="sample-data-flow" style="display:none;">
-            <h3>What happens to your data?</h3>
+            <h2>What happens to your data?</h2>
             <div class="data-step">
-                    <strong>1. What data do we collect?</strong>
+                    <h3>1. What data do we collect?</h3>
                     <span>Papaya Payback collects your browsing data, including web history, clicks, and time spent on different pages. This is what one entry might look like: </span>
                     <span id="dataCollected" class="code-snippet"></span>
                     <span id="browsingHistory" class="code-snippet"></span>
             </div>
             <div class="data-step">
-                <strong>2. What can companies see about you?</strong>
+                <h3>2. What can companies see about you?</h3>
                 <span id="dataSharing"></span>
                 <span id="segment" class="code-snippet"></span>
             </div>
             <div class="data-step">
-                <strong>3. How does this impact you?</strong>
+                <h3>3. How does this impact you?</h3>
                 <span id="resultContent"></span>
                 <img id="resultImage" src="" alt="Result Image" style="display:none; margin-top: 10px; max-width: 100%; border-radius: 5px;">
             </div>
+            <button class="start-button">Preview and Submit</button>
         </section>
     </div>
 

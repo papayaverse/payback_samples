@@ -4,6 +4,9 @@ let selectedRecipient = "";
 let selectedPurpose = "";
 
 function startOnboarding() {
+    document.getElementById('intro-step').style.display = 'none';
+    document.getElementById('privacy-statement').style.display = 'block';
+    document.getElementById('step-1').style.display = 'block';
     document.getElementById('step-1').scrollIntoView({ behavior: 'smooth' });
 }
 
@@ -125,7 +128,7 @@ function highlightSelected(stepId, selectedOption) {
     const choices = step.getElementsByClassName('choice-box');
     for (let choice of choices) {
         choice.style.border = '1px solid #ddd';
-        if (choice.innerText.toLowerCase().includes(selectedOption.toLowerCase())) {
+        if (choice.innerText.includes(selectedOption)) {
             choice.style.border = '2px solid #ff6b6b';
         }
     }
