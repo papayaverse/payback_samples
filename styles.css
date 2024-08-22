@@ -1,0 +1,145 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f4f4f9;
+}
+
+#onboarding {
+    width: 90%;
+    max-width: 800px;
+    padding: 20px;
+    margin-top: 50px; /* Space at the top */
+}
+
+#statement-header {
+    width: 100%;
+    background: darkblue;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.code-snippet {
+    display: block;
+    background-color: #333;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 2px 4px;
+    font-family: "Courier New", Courier, monospace;
+    color: #fff;
+    font-size: 16px;
+}
+
+#privacy-statement-container {
+    margin-bottom: 20px;
+}
+
+#privacy-statement {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.step {
+    margin-bottom: 40px;
+}
+
+.info-button {
+    display: inline-block;
+    margin-top: 10px;
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.info-button:hover {
+    background-color: #ff4b4b;
+}
+
+.more-info {
+    margin-top: 10px;
+    background-color: #f9f9f9;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+}
+
+.more-info img {
+    max-width: 100%;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.more-info p {
+    font-size: 14px;
+    color: #555;
+}
+
+.data-step {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
+}
+
+.highlight {
+    color: #ff4b4b;
+    font-weight: bold;
+}
+
+.choice-box {
+    background: #f0f0f5;
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s, border 0.3s;
+    border: 1px solid #ddd;
+}
+
+.choice-box:hover {
+    background: #e0e0e5;
+}
+
+.save-button {
+    display: block;
+    margin: 20px auto;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+}
+
+.save-button:hover {
+    background-color: #45a049;
+}
+
+.start-button {
+    display: block;
+    margin: 20px auto;
+    background-color: orange;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+}
+
+.start-button:hover {
+    background-color: lightsalmon;
+}
