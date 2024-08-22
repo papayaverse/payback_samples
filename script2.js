@@ -32,7 +32,14 @@ function selectRecipient(recipient) {
 
 function saveRecipient() {
     // Append the recipient choice to the privacy statement
-    privacyStatement += `<span class="highlight">${selectedRecipient}</span> for the purpose(s) of `;
+    if (privacyStatement.includes("with") && privacyStatement.includes("for the purpose(s) of")) {
+        // replace the old recipient with the new one
+        const startIndex = privacyStatement.indexOf("with") + 5;
+        const endIndex = privacyStatement.indexOf("for the purpose(s) of");
+        privacyStatement = privacyStatement.substring(0, startIndex) + `<span class="highlight">${selectedRecipient}</span>` + privacyStatement.substring(endIndex);
+    } else {
+        privacyStatement += `<span class="highlight">${selectedRecipient}</span> for the purpose(s) of `;
+    }
     document.getElementById('privacy-statement').innerHTML = privacyStatement;
 
     // Scroll to the next step
@@ -46,8 +53,16 @@ function selectPurpose(purpose) {
 }
 
 function savePurpose() {
-    // Append the purpose choice to the privacy statement
-    privacyStatement += `<span class="highlight">${selectedPurpose}</span>`;
+    // check if there is already a purpose in place
+    if (privacyStatement.includes("for the purpose(s) of")) {
+        // replace the old purpose with the new one
+        const startIndex = privacyStatement.indexOf("for the purpose(s) of") + 23;
+        privacyStatement = privacyStatement.substring(0, startIndex) + `<span class="highlight">${selectedPurpose}</span>`;
+    }
+    else {
+        // Append the purpose choice to the privacy statement
+        privacyStatement += `<span class="highlight">${selectedPurpose}</span>`;
+    }
     document.getElementById('privacy-statement').innerHTML = privacyStatement;
 
     // Scroll to the sample data flow section
