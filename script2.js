@@ -36,7 +36,7 @@ function saveRecipient() {
         // replace the old recipient with the new one
         const startIndex = privacyStatement.indexOf("with") + 5;
         const endIndex = privacyStatement.indexOf("for the purpose(s) of");
-        privacyStatement = privacyStatement.substring(0, startIndex) + `<span class="highlight">${selectedRecipient}</span>` + privacyStatement.substring(endIndex);
+        privacyStatement = privacyStatement.substring(0, startIndex) + ` <span class="highlight">${selectedRecipient}</span> for the purpose(s) of `; //+ privacyStatement.substring(endIndex);
     } else {
         privacyStatement += `<span class="highlight">${selectedRecipient}</span> for the purpose(s) of `;
     }
