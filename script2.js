@@ -158,3 +158,35 @@ function toggleInfo(event, infoId) {
         infoSection.style.display = "none";
     }
 }
+
+function submitPreferences() {
+    // Capture the data preferences statement
+    const privacyStatement = document.getElementById('privacy-statement').innerHTML;
+
+    // Prepare the data to send (you may need to adjust this to match your API's expected format)
+    const data = {
+        statement: privacyStatement,
+        anonymity: selectedAnonymity,
+        recipient: selectedRecipient,
+        purpose: selectedPurpose
+    };
+
+    // Send the HTTP POST request using Fetch API
+    fetch('https://cookie-monster-preferences-api-499c0307911c.herokuapp.com/preferencesData', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Handle the response
+        console.log('Success:', data);
+        alert('Your preferences have been submitted successfully!');
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+        alert('There was an error submitting your preferences.');
+    });
+}
