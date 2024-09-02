@@ -171,6 +171,8 @@ function submitPreferences() {
         purpose: selectedPurpose
     };
 
+    console.log("This is the data being sent to prefs server ", data);
+
     // Send the HTTP POST request using Fetch API
     fetch('https://cookie-monster-preferences-api-499c0307911c.herokuapp.com/preferencesData', {
         method: 'POST',
