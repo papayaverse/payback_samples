@@ -56,7 +56,7 @@ function savePurpose() {
     // check if there is already a purpose in place
     if (privacyStatement.includes("for the purpose(s) of")) {
         // replace the old purpose with the new one
-        const startIndex = privacyStatement.indexOf("for the purpose(s) of") + 23;
+        const startIndex = privacyStatement.indexOf("for the purpose(s) of") + 24;
         privacyStatement = privacyStatement.substring(0, startIndex) + `<span class="highlight">${selectedPurpose}</span>`;
     }
     else {
