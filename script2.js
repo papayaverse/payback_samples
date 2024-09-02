@@ -180,7 +180,6 @@ function submitPreferences() {
         },
         body: JSON.stringify(data)
     })
-    .then(response => response.json())
     .then(data => {
         // Handle the response
         console.log('Success:', data);
