@@ -178,7 +178,8 @@ function submitPreferences() {
         method: 'POST',
         mode: 'no-cors', // This will disable CORS but limit the response
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'accept': 'application/json'
         },
         body: JSON.stringify(data)
     })
