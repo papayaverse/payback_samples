@@ -176,7 +176,6 @@ function submitPreferences() {
     // Send the HTTP POST request using Fetch API
     fetch('https://cookie-monster-preferences-api-499c0307911c.herokuapp.com/preferencesData', {
         method: 'POST',
-        mode: 'no-cors', // This will disable CORS but limit the response
         headers: {
             'Content-Type': 'application/json',
             'accept': 'application/json'
@@ -186,7 +185,7 @@ function submitPreferences() {
     .then(data => {
         // Handle the response
         console.log('Success:', data);
-        alert('Your preferences have been submitted successfully!');
+        alert('Your preferences have been submitted successfully!', data);
     })
     .catch((error) => {
         console.error('Error:', error);
