@@ -12,7 +12,7 @@ function startOnboarding() {
 
 function selectAnonymity(anonymity) {
     selectedAnonymity = anonymity.toLowerCase();
-    highlightSelected('step-1', anonymity);
+    highlightSelectedOne('step-1', anonymity);
 }
 
 function saveAnonymity() {
@@ -77,56 +77,6 @@ function savePurpose() {
     displaySampleDataFlow();
 }
 
-
-
-    // Show the sample data flow based on user's choices
-const sampleData = {
-        "anonymized": {
-            "targeted advertisement": {
-                "raw_data": "User ID: 12345, Browsing History: /electronics/gadgets, Time Spent: 5 min",
-                "browsing_history": "Visited: electronicsworld.com, gadgetsnow.com | Timestamps: 10:15 AM, 10:20 AM",
-                "transformed_data": "Segment: Gadget Enthusiasts, Age Group: 18-34, Interest: Electronics"
-            },
-            "product recommendation": {
-                "raw_data": "User ID: 12345, Browsing History: /fashion/pants, Clicks: 3",
-                "browsing_history": "Visited: fashionhub.com, pantaloony.com | Timestamps: 3:45 PM, 3:50 PM",
-                "transformed_data": "Segment: Fashion Shoppers, Gender: Female, Interest: Pants"
-            },
-            "email marketing": {
-                "raw_data": "User ID: 12345, Browsing History: /travel/destinations, Time Spent: 10 min",
-                "browsing_history": "Visited: travelguide.com, destinationdream.com | Timestamps: 9:30 AM, 9:40 AM",
-                "transformed_data": "Segment: Travel Enthusiasts, Age Group: 25-44, Interest: Exotic Destinations"
-            },
-            "market research": {
-                "raw_data": "User ID: 12345, Browsing History: /health/fitness, Clicks: 7",
-                "browsing_history": "Visited: fitlife.com, healthfocus.com | Timestamps: 11:00 AM, 11:15 AM",
-                "transformed_data": "Segment: Health Conscious, Gender: Male, Interest: Fitness"
-            }
-        },
-        "de-anonymized": {
-            "targeted advertisement": {
-                "raw_data": "User Name: John Doe, Email: john.doe@example.com, Browsing History: /electronics/gadgets, Time Spent: 5 min",
-                "browsing_history": "Visited: electronicsworld.com, gadgetsnow.com | Timestamps: 10:15 AM, 10:20 AM",
-                "transformed_data": "Full Name: John Doe, Email: john.doe@example.com, Segment: Gadget Enthusiasts, Age Group: 18-34, Interest: Electronics"
-            },
-            "product recommendation": {
-                "raw_data": "User Name: Jane Smith, Email: jane.smith@example.com, Browsing History: /fashion/pants, Clicks: 3",
-                "browsing_history": "Visited: fashionhub.com, pantaloony.com | Timestamps: 3:45 PM, 3:50 PM",
-                "transformed_data": "Full Name: Jane Smith, Email: jane.smith@example.com, Segment: Fashion Shoppers, Gender: Female, Interest: Pants"
-            },
-            "email marketing": {
-                "raw_data": "User Name: Alice Johnson, Email: alice.johnson@example.com, Browsing History: /travel/destinations, Time Spent: 10 min",
-                "browsing_history": "Visited: travelguide.com, destinationdream.com | Timestamps: 9:30 AM, 9:40 AM",
-                "transformed_data": "Full Name: Alice Johnson, Email: alice.johnson@example.com, Segment: Travel Enthusiasts, Age Group: 25-44, Interest: Exotic Destinations"
-            },
-            "market research": {
-                "raw_data": "User Name: Bob Brown, Email: bob.brown@example.com, Browsing History: /health/fitness, Clicks: 7",
-                "browsing_history": "Visited: fitlife.com, healthfocus.com | Timestamps: 11:00 AM, 11:15 AM",
-                "transformed_data": "Full Name: Bob Brown, Email: bob.brown@example.com, Segment: Health Conscious, Gender: Male, Interest: Fitness"
-            }
-        }
-};
-
 function formatList(items) {
     if (items.length === 1) return items[0];
     return items.slice(0, -1).join(', ') + ' and ' + items[items.length - 1];
@@ -135,6 +85,53 @@ function formatList(items) {
 
 
 function displaySampleDataFlow() {
+        // Show the sample data flow based on user's choices
+    const sampleData = {
+    "anonymized": {
+        "targeted advertisement": {
+            "raw_data": "User ID: 12345, Browsing History: /electronics/gadgets, Time Spent: 5 min",
+            "browsing_history": "Visited: electronicsworld.com, gadgetsnow.com | Timestamps: 10:15 AM, 10:20 AM",
+            "transformed_data": "Segment: Gadget Enthusiasts, Age Group: 18-34, Interest: Electronics"
+        },
+        "product recommendation": {
+            "raw_data": "User ID: 12345, Browsing History: /fashion/pants, Clicks: 3",
+            "browsing_history": "Visited: fashionhub.com, pantaloony.com | Timestamps: 3:45 PM, 3:50 PM",
+            "transformed_data": "Segment: Fashion Shoppers, Gender: Female, Interest: Pants"
+        },
+        "email marketing": {
+            "raw_data": "User ID: 12345, Browsing History: /travel/destinations, Time Spent: 10 min",
+            "browsing_history": "Visited: travelguide.com, destinationdream.com | Timestamps: 9:30 AM, 9:40 AM",
+            "transformed_data": "Segment: Travel Enthusiasts, Age Group: 25-44, Interest: Exotic Destinations"
+        },
+        "market research": {
+            "raw_data": "User ID: 12345, Browsing History: /health/fitness, Clicks: 7",
+            "browsing_history": "Visited: fitlife.com, healthfocus.com | Timestamps: 11:00 AM, 11:15 AM",
+            "transformed_data": "Segment: Health Conscious, Gender: Male, Interest: Fitness"
+        }
+    },
+    "de-anonymized": {
+        "targeted advertisement": {
+            "raw_data": "User Name: John Doe, Email: john.doe@example.com, Browsing History: /electronics/gadgets, Time Spent: 5 min",
+            "browsing_history": "Visited: electronicsworld.com, gadgetsnow.com | Timestamps: 10:15 AM, 10:20 AM",
+            "transformed_data": "Full Name: John Doe, Email: john.doe@example.com, Segment: Gadget Enthusiasts, Age Group: 18-34, Interest: Electronics"
+        },
+        "product recommendation": {
+            "raw_data": "User Name: Jane Smith, Email: jane.smith@example.com, Browsing History: /fashion/pants, Clicks: 3",
+            "browsing_history": "Visited: fashionhub.com, pantaloony.com | Timestamps: 3:45 PM, 3:50 PM",
+            "transformed_data": "Full Name: Jane Smith, Email: jane.smith@example.com, Segment: Fashion Shoppers, Gender: Female, Interest: Pants"
+        },
+        "email marketing": {
+            "raw_data": "User Name: Alice Johnson, Email: alice.johnson@example.com, Browsing History: /travel/destinations, Time Spent: 10 min",
+            "browsing_history": "Visited: travelguide.com, destinationdream.com | Timestamps: 9:30 AM, 9:40 AM",
+            "transformed_data": "Full Name: Alice Johnson, Email: alice.johnson@example.com, Segment: Travel Enthusiasts, Age Group: 25-44, Interest: Exotic Destinations"
+        },
+        "market research": {
+            "raw_data": "User Name: Bob Brown, Email: bob.brown@example.com, Browsing History: /health/fitness, Clicks: 7",
+            "browsing_history": "Visited: fitlife.com, healthfocus.com | Timestamps: 11:00 AM, 11:15 AM",
+            "transformed_data": "Full Name: Bob Brown, Email: bob.brown@example.com, Segment: Health Conscious, Gender: Male, Interest: Fitness"
+        }
+    }
+    };
     const data = sampleData[selectedAnonymity][selectedPurposes[0]];  // Use first selected purpose as an example
     document.getElementById("dataCollected").innerText = data.raw_data;
     document.getElementById("browsingHistory").innerText = data.browsing_history;
@@ -161,6 +158,17 @@ function displaySampleDataFlow() {
 
 
 function highlightSelected(stepId, selectedOption) {
+    const step = document.getElementById(stepId);
+    const choices = step.getElementsByClassName('choice-box');
+    for (let choice of choices) {
+        //choice.style.border = '1px solid #ddd';
+        if (choice.innerText.includes(selectedOption)) {
+            choice.style.border = '2px solid #ff6b6b';
+        }
+    }
+}
+
+function highlightSelectedOne(stepId, selectedOption) {
     const step = document.getElementById(stepId);
     const choices = step.getElementsByClassName('choice-box');
     for (let choice of choices) {
