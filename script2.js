@@ -1,7 +1,7 @@
 let privacyStatement = "I am willing to share ";
 let selectedAnonymity = "";
-let selectedRecipient = "";
-let selectedPurpose = "";
+let selectedRecipients = [];
+let selectedPurposes = [];
 
 function startOnboarding() {
     document.getElementById('intro-step').style.display = 'none';
@@ -26,51 +26,61 @@ function saveAnonymity() {
 }
 
 function selectRecipient(recipient) {
-    selectedRecipient = recipient.toLowerCase();
-    highlightSelected('step-2', recipient);
+    const index = selectedRecipients.indexOf(recipient.toLowerCase());
+    if (index > -1) {
+        selectedRecipients.splice(index, 1);  // Remove if already selected
+    } else {
+        selectedRecipients.push(recipient.toLowerCase());  // Add if not selected
+    }
+    highlightSelected('step-2', recipient);  // Update visual highlight
 }
 
-function saveRecipient() {
-    // Append the recipient choice to the privacy statement
-    if (privacyStatement.includes("with") && privacyStatement.includes("for the purpose(s) of")) {
-        // replace the old recipient with the new one
-        const startIndex = privacyStatement.indexOf("with") + 5;
-        const endIndex = privacyStatement.indexOf("for the purpose(s) of");
-        privacyStatement = privacyStatement.substring(0, startIndex) + ` <span class="highlight">${selectedRecipient}</span> for the purpose(s) of `; //+ privacyStatement.substring(endIndex);
+function selectPurpose(purpose) {
+    const index = selectedPurposes.indexOf(purpose.toLowerCase());
+    if (index > -1) {
+        selectedPurposes.splice(index, 1);  // Remove if already selected
     } else {
-        privacyStatement += `<span class="highlight">${selectedRecipient}</span> for the purpose(s) of `;
+        selectedPurposes.push(purpose.toLowerCase());  // Add if not selected
     }
+    highlightSelected('step-3', purpose);  // Update visual highlight
+}
+function saveRecipient() {
+    if (selectedRecipients.length === 0) return;  // Prevent saving if no selections
+
+    // Format the recipients list with commas and "and"
+    const formattedRecipients = formatList(selectedRecipients);
+
+    // Update the privacy statement
+    privacyStatement = `I am willing to share <span class="highlight">${selectedAnonymity}</span> data with <span class="highlight">${formattedRecipients}</span> for the purpose(s) of `;
     document.getElementById('privacy-statement').innerHTML = privacyStatement;
 
-    // Scroll to the next step
+    // Move to the next step
     document.getElementById('step-3').style.display = 'block';
     document.getElementById('step-3').scrollIntoView({ behavior: 'smooth' });
 }
 
-function selectPurpose(purpose) {
-    selectedPurpose = purpose.toLowerCase();
-    highlightSelected('step-3', purpose);
-}
-
 function savePurpose() {
-    // check if there is already a purpose in place
-    if (privacyStatement.includes("for the purpose(s) of")) {
-        // replace the old purpose with the new one
-        const startIndex = privacyStatement.indexOf("for the purpose(s) of") + 24;
-        privacyStatement = privacyStatement.substring(0, startIndex) + `<span class="highlight">${selectedPurpose}</span>`;
-    }
-    else {
-        // Append the purpose choice to the privacy statement
-        privacyStatement += `<span class="highlight">${selectedPurpose}</span>`;
-    }
+    if (selectedPurposes.length === 0) return;  // Prevent saving if no selections
+
+    // Format the purposes list with commas and "and"
+    const formattedPurposes = formatList(selectedPurposes);
+
+    // Append the purposes to the privacy statement
+    privacyStatement += `<span class="highlight">${formattedPurposes}</span>`;
     document.getElementById('privacy-statement').innerHTML = privacyStatement;
 
-    // Scroll to the sample data flow section
+    // Move to the sample data flow section
     document.getElementById('sample-data-flow').style.display = 'block';
     document.getElementById('sample-data-flow').scrollIntoView({ behavior: 'smooth' });
 
+    // Show sample data flow based on user’s choices
+    displaySampleDataFlow();
+}
+
+
+
     // Show the sample data flow based on user's choices
-    const sampleData = {
+const sampleData = {
         "anonymized": {
             "targeted advertisement": {
                 "raw_data": "User ID: 12345, Browsing History: /electronics/gadgets, Time Spent: 5 min",
@@ -115,28 +125,33 @@ function savePurpose() {
                 "transformed_data": "Full Name: Bob Brown, Email: bob.brown@example.com, Segment: Health Conscious, Gender: Male, Interest: Fitness"
             }
         }
-    };
-    const data = sampleData[selectedAnonymity][selectedPurpose];
+};
+
+function displaySampleDataFlow() {
+    const data = sampleData[selectedAnonymity][selectedPurposes[0]];  // Use first selected purpose as an example
     document.getElementById("dataCollected").innerText = data.raw_data;
     document.getElementById("browsingHistory").innerText = data.browsing_history;
     document.getElementById("segment").innerText = data.transformed_data;
-    document.getElementById("dataSharing").innerText = `Your data is processed to create customer segments and is shared with ${selectedRecipient}.`;
-    document.getElementById("resultContent").innerText = `These companies use the data for ${selectedPurpose} and serve you personalized content.`;
+    document.getElementById("dataSharing").innerText = `Your data is processed to create customer segments and is shared with ${formatList(selectedRecipients)}.`;
+    document.getElementById("resultContent").innerText = `These companies use the data for ${formatList(selectedPurposes)} and serve you personalized content.`;
 
-    // Update result image based on purpose
+    // Update result image based on the first selected purpose
     const resultImage = document.getElementById("resultImage");
-    if (selectedPurpose === "product recommendation") {
+    const purpose = selectedPurposes[0];
+    if (purpose === "product recommendation") {
         resultImage.src = "product_rec.png";
-    } else if (selectedPurpose === "targeted advertisement") {
+    } else if (purpose === "targeted advertisement") {
         resultImage.src = "targeted_ads.png";
-    } else if (selectedPurpose === "email marketing") {
+    } else if (purpose === "email marketing") {
         resultImage.src = "email_marketing.png";
-    } else if (selectedPurpose === "market research") {
+    } else if (purpose === "market research") {
         resultImage.src = "";
     }
 
     resultImage.style.display = "block";
 }
+
+
 
 function highlightSelected(stepId, selectedOption) {
     const step = document.getElementById(stepId);
@@ -160,20 +175,13 @@ function toggleInfo(event, infoId) {
 }
 
 function submitPreferences() {
-    // Capture the data preferences statement
-    const privacyStatement = document.getElementById('privacy-statement').innerHTML;
-
-    // Prepare the data to send (you may need to adjust this to match your API's expected format)
     const data = {
-        statement: privacyStatement,
+        statement: document.getElementById('privacy-statement').innerHTML,
         anonymity: selectedAnonymity,
-        recipient: selectedRecipient,
-        purpose: selectedPurpose
+        recipient: selectedRecipients,  // Send as array
+        purpose: selectedPurposes       // Send as array
     };
 
-    console.log("This is the data being sent to prefs server ", data);
-
-    // Send the HTTP POST request using Fetch API
     fetch('https://cookie-monster-preferences-api-499c0307911c.herokuapp.com/preferencesData', {
         method: 'POST',
         headers: {
@@ -182,13 +190,14 @@ function submitPreferences() {
         },
         body: JSON.stringify(data)
     })
+    .then(response => response.json())
     .then(data => {
-        // Handle the response
         console.log('Success:', data);
         alert('Your preferences have been submitted successfully!', data);
     })
-    .catch((error) => {
+    .catch(error => {
         console.error('Error:', error);
         alert('There was an error submitting your preferences.');
     });
 }
+
