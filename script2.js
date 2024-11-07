@@ -127,6 +127,13 @@ const sampleData = {
         }
 };
 
+function formatList(items) {
+    if (items.length === 1) return items[0];
+    return items.slice(0, -1).join(', ') + ' and ' + items[items.length - 1];
+}
+
+
+
 function displaySampleDataFlow() {
     const data = sampleData[selectedAnonymity][selectedPurposes[0]];  // Use first selected purpose as an example
     document.getElementById("dataCollected").innerText = data.raw_data;
