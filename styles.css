@@ -130,7 +130,7 @@ body {
 .start-button {
     display: block;
     margin: 20px auto;
-    background-color: orange;
+    background-color: #ff4b4b;
     color: white;
     border: none;
     border-radius: 5px;
@@ -141,5 +141,5 @@ body {
 }
 
 .start-button:hover {
-    background-color: lightsalmon;
+    background-color: orange;
 }
