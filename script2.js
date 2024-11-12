@@ -32,17 +32,19 @@ function selectRecipient(recipient) {
     } else {
         selectedRecipients.push(recipient.toLowerCase());  // Add if not selected
     }
-    highlightSelected('step-2', recipient);  // Update visual highlight
+    console.log("selected recipients pushed to coloring are ", selectedRecipients);
+    highlightSelected('step-2', selectedRecipients);  // Update visual highlight
 }
 
 function selectPurpose(purpose) {
     const index = selectedPurposes.indexOf(purpose.toLowerCase());
+    console.log("purpose is ", purpose);
     if (index > -1) {
         selectedPurposes.splice(index, 1);  // Remove if already selected
     } else {
         selectedPurposes.push(purpose.toLowerCase());  // Add if not selected
     }
-    highlightSelected('step-3', purpose);  // Update visual highlight
+    highlightSelected('step-3', selectedPurposes);  // Update visual highlight
 }
 function saveRecipient() {
     if (selectedRecipients.length === 0) return;  // Prevent saving if no selections
@@ -157,13 +159,15 @@ function displaySampleDataFlow() {
 
 
 
-function highlightSelected(stepId, selectedOption) {
+function highlightSelected(stepId, selectedOptions) {
     const step = document.getElementById(stepId);
     const choices = step.getElementsByClassName('choice-box');
     for (let choice of choices) {
-        //choice.style.border = '1px solid #ddd';
-        if (choice.innerText.includes(selectedOption)) {
-            choice.style.border = '2px solid #ff6b6b';
+        choice.style.border = '1px solid #ddd';
+        for (let selectedOption of selectedOptions) {
+            if (choice.innerText.toLowerCase().includes(selectedOption)) {
+                choice.style.border = '2px solid #ff6b6b';
+            }
         }
     }
 }
