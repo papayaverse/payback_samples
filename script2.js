@@ -201,7 +201,7 @@ function submitPreferences() {
         purpose: selectedPurposes       // Send as array
     };
 
-    fetch('https://cookie-monster-preferences-api-499c0307911c.herokuapp.com/preferencesData', {
+    fetch('https://cookie-monster-preferences-api-499c0307911c.herokuapp.com/dataPreferences', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
